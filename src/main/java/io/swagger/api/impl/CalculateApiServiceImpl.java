@@ -24,8 +24,8 @@ public class CalculateApiServiceImpl extends CalculateApiService {
     
     @Override
     public Response calculateoperation( @NotNull Integer operand1,  @NotNull String operator,  @NotNull Integer operand2, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        System.out.println("Calculating the result of:" + operand1 +" " + operator + " " + operand2);
+        return Response.ok().entity("3").build();
     }
     
 }

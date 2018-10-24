@@ -24,8 +24,8 @@ public class MemApiServiceImpl extends MemApiService {
     
     @Override
     public Response storeData( @NotNull Integer value, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        System.out.println("Storing the value:" + value);
+        return Response.ok().entity(true).build();
     }
     
 }
