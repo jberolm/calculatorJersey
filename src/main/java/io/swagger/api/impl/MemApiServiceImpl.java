@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 import javax.validation.constraints.*;
+
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Random;
@@ -29,13 +30,16 @@ public class MemApiServiceImpl extends MemApiService {
     public Response storeData( @NotNull Integer value, SecurityContext securityContext) throws NotFoundException {
         System.out.println("Storing the value:" + value);
         //Sending metric
-        try{
-            Socket conn = new Socket("538fc7e2.carbon.hostedgraphite.com", 2003);
-            DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            Random rand = new Random();
+        Socket conn;
+        try{            
+            conn = new Socket("538fc7e2.carbon.hostedgraphite.com", 2003);
+			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+			Random rand = new Random(System.currentTimeMillis());
+			float num = rand.nextFloat();
+			dos.writeBytes("ca123819-c3d8-4134-80a3-0b568c23ca80.ist-calc.mem.time " + num +"\n");
+			System.out.println("Métrica MEM - Tiempo ejecución: " + num);
+			conn.close();
             
-            dos.writeBytes("ca123819-c3d8-4134-80a3-0b568c23ca80.ist-calc.mem.timeExecution"+rand.nextFloat()+"\n");
-            conn.close();
         }catch (Exception e){
             System.out.println("ERROR_METRIC: " + e);
         }
