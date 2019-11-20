@@ -31,12 +31,13 @@ public class MemApiServiceImpl extends MemApiService {
         System.out.println("Storing the value:" + value);
         //Sending metric
         Socket conn;
-        try{            
-            conn = new Socket("538fc7e2.carbon.hostedgraphite.com", 2003);
-			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+        try{ 
+		
+		conn = new Socket("b0056f05.carbon.hostedgraphite.com", 2003);
+		DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
 			Random rand = new Random(System.currentTimeMillis());
 			float num = rand.nextFloat();
-			dos.writeBytes("ca123819-c3d8-4134-80a3-0b568c23ca80.ist-calc.mem.time " + num +"\n");
+			dos.writeBytes("4121accb-d503-46ea-8337-bbe974075b98.ist-calc.mem.time " + num +"\n");
 			System.out.println("Métrica MEM - Tiempo ejecución: " + num);
 			conn.close();
             
